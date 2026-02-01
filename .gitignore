@@ -1,0 +1,6 @@
+﻿*.vsconfig
+*.sln
+Hackathon_Sui/UserSettings
+Hackathon_Sui/Temp
+Hackathon_Sui/Logs
+Hackathon_Sui/Library
