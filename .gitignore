@@ -4,3 +4,6 @@ Hackathon_Sui/UserSettings
 Hackathon_Sui/Temp
 Hackathon_Sui/Logs
 Hackathon_Sui/Library
+*.csproj
+Hackathon_Sui/.vs
+Hackathon_Sui/obj
