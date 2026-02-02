@@ -2,14 +2,15 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 
-public class BasicStatus : MonoBehaviour
+[System.Serializable]
+public class BasicStatus
 {
     public string myName;
     public float baseHealthPoint;
     public float baseAttack;
     public float baseDefend;
     public float baseSpeed;
-    public int level;
+    public int Level;
 
     public float currentHealth;
     public bool isBlock = false;
@@ -18,13 +19,6 @@ public class BasicStatus : MonoBehaviour
 
     private float damageRedutionPercent = 0.65f;
     private float defendMultiplier = 1.15f;
-
-    private void Awake()
-    {
-        //not equal
-        //its involve level too
-        currentHealth = baseHealthPoint;
-    }
 
     public void TakeDamage(BasicStatus opponent, int isDealDamage)
     {

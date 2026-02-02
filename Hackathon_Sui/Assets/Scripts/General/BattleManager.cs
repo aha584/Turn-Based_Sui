@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 {
@@ -35,12 +36,12 @@ public class BattleManager : MonoBehaviour
         playerPet = VersusInfo.Instance.playerPet;
         playerPet.onDead += GameOver;
         playerHealthBar.myStatus = playerPet;
-        playerName.text = $"{playerPet.myName} Lv.{playerPet.level}";
+        playerName.text = $"{playerPet.myName} Lv.{playerPet.Level}";
         playerName.ForceMeshUpdate();
         enemy = VersusInfo.Instance.enemy;
         enemy.onDead += GameWin;
         enemyHealthBar.myStatus = enemy;
-        enemyName.text = $"{enemy.myName} Lv.{enemy.level}";
+        enemyName.text = $"{enemy.myName} Lv.{enemy.Level}";
         enemyName.ForceMeshUpdate();
 
         turnOrder.Clear();
@@ -92,7 +93,7 @@ public class BattleManager : MonoBehaviour
     }
     private void GameWin()
     {
-
+        SceneManager.LoadScene("Choose Floor");
     }
     private void GameOver()
     {
