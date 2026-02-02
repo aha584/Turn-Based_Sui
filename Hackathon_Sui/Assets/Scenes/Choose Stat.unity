@@ -648,8 +648,8 @@ Transform:
   m_GameObject: {fileID: 333055577}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.4787, y: 0.3042, z: 0}
-  m_LocalScale: {x: 32.773514, y: 35.21685, z: 1}
+  m_LocalPosition: {x: -8.5516, y: -0.024, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2389,6 +2389,7 @@ GameObject:
   - component: {fileID: 1008687915}
   - component: {fileID: 1008687914}
   - component: {fileID: 1008687918}
+  - component: {fileID: 1008687919}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -2509,6 +2510,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7fc838471c0834383552ec5f2d704b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RandomButton
+--- !u!114 &1008687919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008687909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30af04de884ae1c458cd65c71f367a40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AddBackgroundButton
+  chooseAvatarButton: {fileID: 2001447460}
+  selectedAvatarPath: 
 --- !u!1 &1089760788
 GameObject:
   m_ObjectHideFlags: 0
@@ -3008,7 +3023,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 9.6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3094,6 +3109,7 @@ GameObject:
   - component: {fileID: 1156034782}
   - component: {fileID: 1156034781}
   - component: {fileID: 1156034783}
+  - component: {fileID: 1156034784}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -3168,6 +3184,19 @@ MonoBehaviour:
     currentHealth: 0
     isBlock: 0
     mySprite: {fileID: 0}
+--- !u!114 &1156034784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156034780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2a94f1d6de1f024893823a6e81f4ca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AvatarLoader
+  mySprite: {fileID: 333055578}
 --- !u!1 &1165817307
 GameObject:
   m_ObjectHideFlags: 0
@@ -5573,7 +5602,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2001447461}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1008687919}
+        m_TargetAssemblyTypeName: AddPetAvatarButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2001447461
 MonoBehaviour:
   m_ObjectHideFlags: 0

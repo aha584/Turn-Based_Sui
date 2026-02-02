@@ -14,7 +14,6 @@ public class ChooseStatManager : MonoBehaviour
     public Slider defSlider;
     public Slider spdSlider;
     public int currentStatPoint;
-    public SpriteRenderer playerPetAvatar;
 
     private int statPoint = 175;
     public PlayerStatus playerPet;
@@ -109,5 +108,13 @@ public class ChooseStatManager : MonoBehaviour
         playerPet.baseSpeed = Random.Range(0, midStat);
         spdSlider.value = playerPet.baseSpeed;
         currentStatPoint -= (int)(playerPet.baseSpeed);
+    }
+    public bool CheckValid()
+    {
+        if (playerPet.avatar == null || playerPet.baseHealthPoint <= 0 || playerPet.baseSpeed <= 0)
+        {
+            return false;
+        }
+        return true;
     }
 }

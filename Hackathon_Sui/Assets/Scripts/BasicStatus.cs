@@ -11,6 +11,7 @@ public class BasicStatus
     public float baseDefend;
     public float baseSpeed;
     public int Level;
+    public Sprite avatar;
 
     public float currentHealth;
     public bool isBlock = false;
