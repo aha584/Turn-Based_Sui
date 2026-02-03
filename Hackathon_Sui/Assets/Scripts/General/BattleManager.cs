@@ -18,6 +18,8 @@ public class BattleManager : MonoBehaviour
     public HealthBar enemyHealthBar;
     public TMP_Text playerName;
     public TMP_Text enemyName;
+    public SpriteRenderer playerSprite;
+    public SpriteRenderer enemySprite;
 
     private int turnToDefeat = 5;
     private int currentTurn;
@@ -31,6 +33,33 @@ public class BattleManager : MonoBehaviour
             Instance = this;
         }
         currentTurn = 0;
+        currentOrderIndex = 0;
+        if (VersusInfo.Instance == null) return;
+
+        playerPet = VersusInfo.Instance.playerPet;
+        playerPet.onDead += GameOver;
+        playerHealthBar.myStatus = playerPet;
+        playerName.text = $"{playerPet.myName} Lv.{playerPet.Level}";
+        playerName.ForceMeshUpdate();
+        playerSprite.sprite = playerPet.avatar;
+
+        enemy = VersusInfo.Instance.enemy;
+        enemy.onDead += GameWin;
+        enemyHealthBar.myStatus = enemy;
+        enemyName.text = $"{enemy.myName} Lv.{enemy.Level}";
+        enemyName.ForceMeshUpdate();
+        enemySprite.sprite = enemy.avatar;
+
+        turnOrder.Clear();
+        turnOrder.Add(playerPet);
+        turnOrder.Add(enemy);
+        turnOrder = turnOrder.OrderByDescending(x => x.baseSpeed).ToList();
+    }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        /*currentTurn = 0;
         currentOrderIndex = 0;
         if (VersusInfo.Instance == null) return;
         playerPet = VersusInfo.Instance.playerPet;
@@ -47,13 +76,7 @@ public class BattleManager : MonoBehaviour
         turnOrder.Clear();
         turnOrder.Add(playerPet);
         turnOrder.Add(enemy);
-        turnOrder = turnOrder.OrderByDescending(x => x.baseSpeed).ToList();
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+        turnOrder = turnOrder.OrderByDescending(x => x.baseSpeed).ToList();*/
     }
 
     // Update is called once per frame
@@ -81,7 +104,8 @@ public class BattleManager : MonoBehaviour
     public void InscreaseIndex()
     {
         currentOrderIndex++;
-        if(currentOrderIndex > turnOrder.Count)
+        Debug.Log($"Order Index: {currentOrderIndex}");
+        if(currentOrderIndex >= turnOrder.Count)
         {
             currentOrderIndex = 0;
             IncreaseTurn();
@@ -90,13 +114,16 @@ public class BattleManager : MonoBehaviour
     public void IncreaseTurn()
     {
         currentTurn++;
+        Debug.Log("Turn Increase");
     }
     private void GameWin()
     {
+        GenerateEnemy.Instance.currentFloorIndex++;
         SceneManager.LoadScene("Choose Floor");
     }
     private void GameOver()
     {
-
+        Debug.Log("Game Over");
+        Time.timeScale = 0f;
     }
 }

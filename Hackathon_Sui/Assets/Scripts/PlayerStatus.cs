@@ -2,7 +2,6 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerStatus : BasicStatus
 {
-    public Sprite mySprite;
     public PlayerStatus(string name, float baseHP, float baseATK, float baseDEF, float baseSPD, int level)
     {
         myName = name;

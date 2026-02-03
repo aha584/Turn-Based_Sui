@@ -34,13 +34,15 @@ public class TurnInfo : MonoBehaviour
         }
     }
 
-    private void Attack()
+    public void Attack()
     {
+        Debug.Log("Attack");
         dealer.isBlock = false;
         receiver.TakeDamage(dealer, 1);
     }
-    private void Block()
+    public void Block()
     {
+        Debug.Log("Blocks");
         dealer.isBlock = true;
         receiver.TakeDamage(dealer, 0);
     }

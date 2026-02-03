@@ -53,6 +53,7 @@ public class ChooseStatManager : MonoBehaviour
     {
         if (currentStatPoint <= 0) return;
         if (playerPet == null) return;
+        if (hpSlider.value == hpSlider.maxValue) return;
         playerPet.baseHealthPoint++;
         hpSlider.value++;
         currentStatPoint--;
@@ -61,6 +62,7 @@ public class ChooseStatManager : MonoBehaviour
     {
         if (currentStatPoint <= 0) return;
         if (playerPet == null) return;
+        if (atkSlider.value == atkSlider.maxValue) return;
         playerPet.baseAttack++;
         atkSlider.value++;
         currentStatPoint--;
@@ -69,6 +71,7 @@ public class ChooseStatManager : MonoBehaviour
     {
         if (currentStatPoint <= 0) return;
         if (playerPet == null) return;
+        if (defSlider.value == defSlider.maxValue) return;
         playerPet.baseDefend++;
         defSlider.value++;
         currentStatPoint--;
@@ -77,6 +80,7 @@ public class ChooseStatManager : MonoBehaviour
     {
         if (currentStatPoint <= 0) return;
         if (playerPet == null) return;
+        if (spdSlider.value == spdSlider.maxValue) return;
         playerPet.baseSpeed++;
         spdSlider.value++;
         currentStatPoint--;
