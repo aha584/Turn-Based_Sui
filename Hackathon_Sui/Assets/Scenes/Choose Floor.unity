@@ -992,6 +992,7 @@ MonoBehaviour:
   floor13: {fileID: 2142719505}
   chooseFloorText: {fileID: 476645281}
   randomEnemy: []
+  currentFloorIndex: 1
 --- !u!1 &436016325
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,6 +1004,7 @@ GameObject:
   - component: {fileID: 436016326}
   - component: {fileID: 436016327}
   - component: {fileID: 436016328}
+  - component: {fileID: 436016329}
   m_Layer: 0
   m_Name: FloorUIManager
   m_TagString: Untagged
@@ -1049,6 +1051,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 228ae96e93841a141a741228c6c5e661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RerollButton
+--- !u!114 &436016329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436016325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73b45e680d6c48f49a1019a6b5a1fa94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AmoutField
+  amountField: {fileID: 180626147}
 --- !u!1 &451206412
 GameObject:
   m_ObjectHideFlags: 0
