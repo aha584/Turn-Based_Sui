@@ -24,6 +24,7 @@ public class ChooseStatManager : MonoBehaviour
         {
             Instance = this;
         }
+        DontDestroyOnLoad(gameObject);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -44,7 +45,7 @@ public class ChooseStatManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void OnStatValueChange()
     {
         statPointField.text = $"{currentStatPoint}";
         statPointField.ForceLabelUpdate();
@@ -57,6 +58,7 @@ public class ChooseStatManager : MonoBehaviour
         playerPet.baseHealthPoint++;
         hpSlider.value++;
         currentStatPoint--;
+        OnStatValueChange();
     }
     public void IncreaseATK()
     {
@@ -66,6 +68,7 @@ public class ChooseStatManager : MonoBehaviour
         playerPet.baseAttack++;
         atkSlider.value++;
         currentStatPoint--;
+        OnStatValueChange();
     }
     public void IncreaseDEF()
     {
@@ -75,6 +78,7 @@ public class ChooseStatManager : MonoBehaviour
         playerPet.baseDefend++;
         defSlider.value++;
         currentStatPoint--;
+        OnStatValueChange();
     }
     public void IncreaseSPD()
     {
@@ -84,6 +88,7 @@ public class ChooseStatManager : MonoBehaviour
         playerPet.baseSpeed++;
         spdSlider.value++;
         currentStatPoint--;
+        OnStatValueChange();
     }
     public void ResetStat()
     {
@@ -95,6 +100,7 @@ public class ChooseStatManager : MonoBehaviour
         defSlider.value = 0;
         spdSlider.value = 0;
         currentStatPoint = statPoint;
+        OnStatValueChange();
     }
     public void RandomStat()
     {
@@ -112,6 +118,8 @@ public class ChooseStatManager : MonoBehaviour
         playerPet.baseSpeed = Random.Range(0, midStat);
         spdSlider.value = playerPet.baseSpeed;
         currentStatPoint -= (int)(playerPet.baseSpeed);
+        OnStatValueChange();
+        SuiManager.Instance.suiToCreate = (statPoint - currentStatPoint) * 0.005/5;
     }
     public bool CheckValid()
     {

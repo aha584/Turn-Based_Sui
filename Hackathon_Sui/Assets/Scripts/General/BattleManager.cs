@@ -20,6 +20,7 @@ public class BattleManager : MonoBehaviour
     public TMP_Text enemyName;
     public SpriteRenderer playerSprite;
     public SpriteRenderer enemySprite;
+    public GameObject GameOverUI;
 
     private int turnToDefeat = 5;
     private int currentTurn;
@@ -77,6 +78,7 @@ public class BattleManager : MonoBehaviour
         turnOrder.Add(playerPet);
         turnOrder.Add(enemy);
         turnOrder = turnOrder.OrderByDescending(x => x.baseSpeed).ToList();*/
+        GameOverUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -116,14 +118,16 @@ public class BattleManager : MonoBehaviour
         currentTurn++;
         Debug.Log("Turn Increase");
     }
-    private void GameWin()
+    public void GameWin()
     {
         GenerateEnemy.Instance.currentFloorIndex++;
         SceneManager.LoadScene("Choose Floor");
     }
-    private void GameOver()
+    public async void GameOver()
     {
         Debug.Log("Game Over");
-        Time.timeScale = 0f;
+        await SuiManager.Instance.TransferSuiToOwner(SuiManager.Instance.testAcc, (decimal)(SuiManager.Instance.TakeSui(true)));
+        GameOverUI.SetActive(true);
+        //Time.timeScale = 0f;
     }
 }

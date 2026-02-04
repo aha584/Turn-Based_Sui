@@ -9,7 +9,10 @@ namespace Sui.Rpc.Models
         public override bool CanConvert(Type object_type) => object_type == typeof(AccountAddress);
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-            => new AccountAddress(reader.Value.ToString());
+        {
+            if (reader.Value == null) return null;
+            return new AccountAddress(reader.Value.ToString());
+        }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {

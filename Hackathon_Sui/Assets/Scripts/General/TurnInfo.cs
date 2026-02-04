@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class TurnInfo : MonoBehaviour
 {
@@ -6,6 +7,8 @@ public class TurnInfo : MonoBehaviour
 
     public BasicStatus dealer;
     public BasicStatus receiver;
+
+    public TMP_Text dialog;
 
     private void Awake()
     {
@@ -37,12 +40,16 @@ public class TurnInfo : MonoBehaviour
     public void Attack()
     {
         Debug.Log("Attack");
+        dialog.text = $"{dealer.myName} use Attack on {receiver.myName}.";
+        dialog.ForceMeshUpdate();
         dealer.isBlock = false;
         receiver.TakeDamage(dealer, 1);
     }
     public void Block()
     {
         Debug.Log("Blocks");
+        dialog.text = $"{dealer.myName} use Block.";
+        dialog.ForceMeshUpdate();
         dealer.isBlock = true;
         receiver.TakeDamage(dealer, 0);
     }

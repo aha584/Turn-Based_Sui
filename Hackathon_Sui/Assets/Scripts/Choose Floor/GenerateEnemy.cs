@@ -47,7 +47,7 @@ public class GenerateEnemy : MonoBehaviour
             int baseSPD = Random.Range(midPoint - 20, midPoint);
             EnemyStatus enemy = new EnemyStatus($"Enemy {i}", baseHP, baseATK, baseDEF, baseSPD, 1);
             int spriteRandIndex = Random.Range(0, 8);
-            Debug.Log(spriteRandIndex);
+            //Debug.Log(spriteRandIndex);
             enemy.avatar = LoadAvatarByAddressables.Instance.avatarPrefabs[spriteRandIndex];
             randomEnemy.Add(enemy);
         }

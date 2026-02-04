@@ -5,5 +5,6 @@ public class RerollButton : MonoBehaviour
     public void OnClick()
     {
         GenerateEnemy.Instance.Generate();
+        SuiManager.Instance.RerollSuiAmount();
     }
 }

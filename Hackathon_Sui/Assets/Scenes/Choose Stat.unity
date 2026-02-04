@@ -453,6 +453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SuiManager
   address: 0x1f21bda6b481f83ac51dd19dc7137ab4b356e8fa2d1577e1a0c3e8821f52082b
   suiCoins: 0
+  suiToCreate: 0
   mainNet: https://fullnode.mainnet.sui.io:443
   devNet: https://fullnode.devnet.sui.io:443
   testNet: https://fullnode.testnet.sui.io:443
@@ -2298,7 +2299,19 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156034783}
+        m_TargetAssemblyTypeName: ChooseStatManager, Assembly-CSharp
+        m_MethodName: OnStatValueChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnTouchScreenKeyboardStatusChanged:
     m_PersistentCalls:
       m_Calls: []
