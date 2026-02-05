@@ -18,8 +18,8 @@ public class BasicStatus
     public Action onDead;
     public Action onHealthChange;
 
-    private float damageRedutionPercent = 0.65f;
-    private float defendMultiplier = 1.15f;
+    private float damageRedutionPercent = 0.15f;
+    private float defendMultiplier = 1f;
 
     public void TakeDamage(BasicStatus opponent, int isDealDamage)
     {
@@ -39,7 +39,7 @@ public class BasicStatus
         }
         else
         {
-            float dmgReceive = isDealDamage * damageRedutionPercent * (opponent.baseAttack - defendMultiplier * baseDefend);
+            float dmgReceive = isDealDamage * (1f - damageRedutionPercent) * (opponent.baseAttack - defendMultiplier * baseDefend);
             if (dmgReceive >= 0)
             {
                 currentHealth -= dmgReceive;

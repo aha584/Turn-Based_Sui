@@ -5,7 +5,11 @@ public class ConfirmButton : MonoBehaviour
 {
     public async void OnClick()
     {
-        if (!ChooseStatManager.Instance.CheckValid()) return;
+        if (!ChooseStatManager.Instance.CheckValid())
+        {
+            Debug.Log("Not Valid!");
+            return;
+        }
         await SuiManager.Instance.MintNewPet(SuiManager.Instance.testAcc,
                                              ChooseStatManager.Instance.playerPet.myName,
                                              (ulong)ChooseStatManager.Instance.playerPet.baseHealthPoint,
