@@ -451,12 +451,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bbda8afe0cea8e4eb3a54e0c55683d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SuiManager
-  address: 0x1f21bda6b481f83ac51dd19dc7137ab4b356e8fa2d1577e1a0c3e8821f52082b
+  ownerAddress: 0x7a698b05ab1223631ac95bcdf9a1213933828524c91997dd53a27981ea3e66c2
+  ownerHex: 78fd3714fda0578d740bec76418d9c7c47dde55e5b43be26d55e9220ed36ffbd
+  playerAddress: 
   suiCoins: 0
-  suiToCreate: 0
   mainNet: https://fullnode.mainnet.sui.io:443
   devNet: https://fullnode.devnet.sui.io:443
   testNet: https://fullnode.testnet.sui.io:443
+  suiToCreate: 0
+  suiToReset: 0
+  suiToReroll: 0
 --- !u!4 &105982603
 Transform:
   m_ObjectHideFlags: 0

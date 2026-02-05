@@ -118,15 +118,16 @@ public class BattleManager : MonoBehaviour
         currentTurn++;
         Debug.Log("Turn Increase");
     }
-    public void GameWin()
+    public async void GameWin()
     {
+        await SuiManager.Instance.TransferSui(SuiManager.Instance.ownerAcc, SuiManager.Instance.testAcc, (decimal)(SuiManager.Instance.TakeSui(3)));
         GenerateEnemy.Instance.currentFloorIndex++;
         SceneManager.LoadScene("Choose Floor");
     }
     public async void GameOver()
     {
         Debug.Log("Game Over");
-        await SuiManager.Instance.TransferSuiToOwner(SuiManager.Instance.testAcc, (decimal)(SuiManager.Instance.TakeSui(true)));
+        await SuiManager.Instance.TransferSui(SuiManager.Instance.testAcc, SuiManager.Instance.ownerAcc, (decimal)(SuiManager.Instance.TakeSui(1)));
         GameOverUI.SetActive(true);
         //Time.timeScale = 0f;
     }

@@ -15,9 +15,12 @@ public class SuiManager : MonoBehaviour
     public static SuiManager Instance;
 
     public SuiClient client;
-    public string address;
+    public string ownerAddress;
+    public string ownerHex;
+    public string playerAddress;
     public double suiCoins;
     public Account testAcc;
+    public Account ownerAcc;
     [SerializeField] private string mainNet = "https://fullnode.mainnet.sui.io:443";
     [SerializeField] private string devNet = "https://fullnode.devnet.sui.io:443";
     [SerializeField] private string testNet = "https://fullnode.testnet.sui.io:443";
@@ -54,9 +57,11 @@ public class SuiManager : MonoBehaviour
         var connection = new Connection(testNet);
         client = new SuiClient(connection);
 
-        byte[] keyBytes = Utils.HexStringToByteArray(hex);
+        byte[] keyBytesOwner = Utils.HexStringToByteArray(ownerHex);
+        ownerAcc = new(keyBytesOwner);
 
-        Account Acc = new Account(keyBytes);
+        byte[] keyBytesPlayer = Utils.HexStringToByteArray(hex);
+        Account Acc = new Account(keyBytesPlayer);
         testAcc = Acc;
     }
 
@@ -135,12 +140,18 @@ public class SuiManager : MonoBehaviour
             Debug.LogException(e);
         }
     }
-    public async Task TransferSuiToOwner(Account sender, decimal amountInSui)
+    public async Task TransferSui(Account sender, Account receiver, decimal amountInSui)
     {
         if (sender == null) { Debug.LogError("Sender Account is null!"); return; }
-        if (string.IsNullOrEmpty(address))
+        if (receiver == null) { Debug.LogError("Receiver Account is null!"); return; }
+        if (string.IsNullOrEmpty(ownerAddress))
         {
             Debug.LogError("Owner address is empty! Hãy gán địa chỉ ví của bạn vào biến 'address' trong Inspector.");
+            return;
+        }
+        if (string.IsNullOrEmpty(playerAddress))
+        {
+            Debug.LogError("Player address is empty! Hãy gán địa chỉ ví của bạn vào biến 'address' trong Inspector.");
             return;
         }
         if (amountInSui <= 0)
@@ -161,7 +172,7 @@ public class SuiManager : MonoBehaviour
 
             var splitCoinArg = tx.AddSplitCoinsTx(tx.gas, new[] { amountArg }).ToArray();
 
-            var recipientArg = tx.AddPure(new AccountAddress(address));
+            var recipientArg = tx.AddPure(receiver.SuiAddress());
 
             tx.AddTransferObjectsTx(splitCoinArg, recipientArg);
 
@@ -207,15 +218,19 @@ public class SuiManager : MonoBehaviour
     {
         suiToReroll += 0.0015 * 3/5;
     }
-    public double TakeSui(bool gameOver)
+    public double TakeSui(int gameState)
     {
-        if (gameOver)
+        if (gameState == 1) //GameOver
         {
             return suiToCreate + suiToReset + suiToReroll;
         }
-        else
+        else if(gameState == 2) // Reroll Enemy
         {
             return suiToReroll;
+        }
+        else //Game Win
+        {
+            return suiToCreate;
         }
     }
 }
